@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "precommit": "lint-staged",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -20,6 +21,23 @@
     "redis": "^2.8.0"
   },
   "devDependencies": {
+    "cz-emoji": "^1.1.2",
     "errorhandler": "^1.5.0"
+  },
+  "lint-staged": {
+    "*.{cmd,html,json,md,sh,txt,xml,yml}": [
+      "editorconfig-tools fix",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-emoji"
+    }
   }
 }
